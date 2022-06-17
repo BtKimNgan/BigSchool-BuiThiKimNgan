@@ -30,11 +30,15 @@
                 <span class="caterogy">
                     @course.category.Name
                 </span>
+                <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance"> Going???</button>
             </div>
         </li>
     }
 </ul>
-    <@*div class="row">
+@section scripts{
+    <script></script>
+    }
+    @*<div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
