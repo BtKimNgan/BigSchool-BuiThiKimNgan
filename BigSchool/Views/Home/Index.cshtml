@@ -4,8 +4,7 @@
 
 <div class="jumbotron">
     <h1>Kym Ngan</h1>
-    @*<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+   
 </div>
 <ul class="course">
     @foreach (var course in Model)
@@ -26,6 +25,7 @@
             <div class="details">
                 <span class="lecturer">
                     @course.Lecturer.Name
+                    <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
                 </span>
                 <span class="caterogy">
                     @course.category.Name
@@ -36,7 +36,35 @@
     }
 </ul>
 @section scripts{
-    <script></script>
+    <script>
+        $(document).ready(function (){
+            $(".js-toggle-attendance").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/attendances", { courseId: button.attr("data-course-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Going");
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+
+            });
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                    .done(function () {
+                        button.text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    });
+            });
+            });
+       
+    </script>
     }
     @*<div class="row">
     <div class="col-md-4">
