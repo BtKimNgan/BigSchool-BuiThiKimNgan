@@ -34,6 +34,7 @@ textarea {
     }
 .course {
     list-style:none;
+    background-color: #b6ff00;
 }
     .course > li{
         position:relative;
@@ -51,4 +52,11 @@ textarea {
         top:0;
         left: 70px;
     }
-
+    .course > li .action{
+        display: none;
+        left: 70px;
+        position: absolute;
+    }
+    .course >li:hover .action{
+        display:block;
+    }
